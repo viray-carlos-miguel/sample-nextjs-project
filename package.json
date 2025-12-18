@@ -2,15 +2,29 @@
   "name": "sample-nextjs-project",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+  
+   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    
+    
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down",
+    "db:logs": "docker-compose logs -f",
+    "db:reset": "docker-compose down -v && docker-compose up -d",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio",
+    "prisma:migrate": "prisma migrate dev",
+    "db:setup": "npm run db:up && npm run prisma:generate && npm run prisma:push",
+    "dev:full": "npm run db:up && npm run prisma:generate && npm run dev"
   },
   "dependencies": {
     "@prisma/client": "^7.2.0",
     "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

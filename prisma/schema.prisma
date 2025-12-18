@@ -1,26 +1,80 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
 
-ddatasource db {
+datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
 model Patient {
-  id        Int      @id @default(autoincrement())
-  patientId String
-  firstName String
-  lastName  String
-  age       Int
-  gender    String
-  symptoms  String
-  createdAt DateTime @default(now())
+  id               String   @id @default(cuid())
+  patientId        String   @unique
+  firstName        String
+  lastName         String
+  age              Int
+  gender           Gender   @default(UNKNOWN)
+  bloodType        BloodType?
+  contact          String
+  email            String?
+  address          String
+  emergencyContact String?
+  symptoms         String?
+  allergies        String?
+  dateOfBirth      DateTime?
+  insuranceId      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  visits           Visit[]
+  
+  @@index([patientId])
+  @@index([lastName, firstName])
+  @@map("patients")
+}
+
+model Visit {
+  id          String   @id @default(cuid())
+  patientId   String
+  patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  visitDate   DateTime @default(now())
+  reason      String
+  diagnosis   String?
+  prescription String?
+  notes       String?
+  doctor      String
+  status      VisitStatus @default(SCHEDULED)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([patientId])
+  @@index([visitDate])
+  @@map("visits")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  UNKNOWN
+}
+
+enum BloodType {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+  UNKNOWN
+}
+
+enum VisitStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
 }

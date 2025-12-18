@@ -1,0 +1,40 @@
+# docker-compose.yml
+version: '4.55'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: systemanaa-db
+    restart: always
+    environment:
+      POSTGRES_USER: systemanaa
+      POSTGRES_PASSWORD: systemanaa_password
+      POSTGRES_DB: systemanaa_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
+    networks:
+      - systemanaa-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: systemanaa-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@systemanaa.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - systemanaa-network
+
+volumes:
+  postgres_data:
+
+networks:
+  systemanaa-network:
+    driver: bridge
