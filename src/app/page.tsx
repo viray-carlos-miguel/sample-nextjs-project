@@ -1,4 +1,6 @@
 import { IconType } from "react-icons";
+import Link from "next/link";
+
 import { 
   FaStethoscope,
   FaUserMd,
@@ -45,12 +47,13 @@ export default function Home() {
             Input your symptoms and get instant, AI-powered insights into possible conditions, risk levels, and next steps. Always consult a healthcare professional for accurate diagnosis.
           </p>
 
-          <a
-            href="#"
-            className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium shadow-lg transition transform hover:scale-105"
-          >
-            Start Analysis
-          </a>
+         <Link
+  href="/systemanaa"
+  className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium shadow-lg transition transform hover:scale-105"
+>
+  Start Analysis
+</Link>
+
         </div>
 
         {/* Right Hero Icon */}
