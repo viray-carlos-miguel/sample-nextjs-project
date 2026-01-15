@@ -19,7 +19,8 @@ export default function CaseReview() {
     const fetchCase = async () => {
       try {
         const cases = await getPendingCases();
-        const c = cases.find((c) => c.id === Number(caseId));
+        // Fix: Explicitly type the callback parameter
+        const c = cases.find((c: Case) => c.id === Number(caseId));
         setCaseData(c || null);
       } catch {
         setCaseData(null);
