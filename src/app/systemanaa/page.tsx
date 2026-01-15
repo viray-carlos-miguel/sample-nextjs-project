@@ -321,7 +321,7 @@ export default function SymptomAnalysisPage() {
                       <Label htmlFor="gender" className="text-gray-300">Gender</Label>
                       <Select 
                         value={form.gender} 
-                        onValueChange={(value) => handleSelectChange('gender', value)}
+                        onValueChange={(value: string) => handleSelectChange('gender', value)}
                       >
                         <SelectTrigger className="bg-white/5 border-white/10 text-white">
                           <SelectValue placeholder="Select gender" />
@@ -379,7 +379,7 @@ export default function SymptomAnalysisPage() {
                       <Label htmlFor="severity" className="text-gray-300">Severity Level *</Label>
                       <Select 
                         value={form.severity} 
-                        onValueChange={(value) => handleSelectChange('severity', value)}
+                        onValueChange={(value: string) => handleSelectChange('severity', value)}
                       >
                         <SelectTrigger className={`bg-white/5 border-white/10 text-white ${errors.severity ? "border-red-500" : ""}`}>
                           <SelectValue placeholder="Select severity" />
@@ -401,7 +401,7 @@ export default function SymptomAnalysisPage() {
                       <Label htmlFor="bodyArea" className="text-gray-300">Affected Body Area</Label>
                       <Select 
                         value={form.bodyArea} 
-                        onValueChange={(value) => handleSelectChange('bodyArea', value)}
+                        onValueChange={(value: string) => handleSelectChange('bodyArea', value)}
                       >
                         <SelectTrigger className="bg-white/5 border-white/10 text-white">
                           <SelectValue placeholder="Select area" />

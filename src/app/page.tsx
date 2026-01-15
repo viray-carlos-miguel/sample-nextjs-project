@@ -183,10 +183,12 @@ export default function Home() {
                     analysis.urgency === 'High' ? 'bg-red-500/20' : 
                     analysis.urgency === 'Medium' ? 'bg-yellow-500/20' : 'bg-green-500/20'
                   }`}>
-                    <FaUserInjured className={`${
+                    <div className={
                       analysis.urgency === 'High' ? 'text-red-400' : 
                       analysis.urgency === 'Medium' ? 'text-yellow-400' : 'text-green-400'
-                    }`} size="1.5rem" />
+                    }>
+                      <FaUserInjured size="1.5rem" />
+                    </div>
                   </div>
                   <div>
                     <h4 className="font-semibold">{analysis.patient}</h4>
@@ -204,7 +206,9 @@ export default function Home() {
                 <div className="text-center">
                   <p className="text-sm text-gray-400">Prescription</p>
                   <div className="flex items-center justify-center gap-2">
-                    <FaPills className="text-blue-400" size="1rem" />
+                    <div className="text-blue-400">
+                      <FaPills size="1rem" />
+                    </div>
                     <p className="font-medium">{analysis.prescription}</p>
                   </div>
                 </div>
@@ -212,7 +216,9 @@ export default function Home() {
                 {/* Doctor & Status */}
                 <div className="text-right">
                   <div className="flex items-center justify-end gap-2 mb-1">
-                    <FaUserMd className="text-purple-400" size="1rem" />
+                    <div className="text-purple-400">
+                      <FaUserMd size="1rem" />
+                    </div>
                     <p className="text-sm">{analysis.doctor}</p>
                   </div>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
@@ -287,7 +293,9 @@ export default function Home() {
       <section className="px-10 py-16 border-t border-white/10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-            <FaUserCheck className="text-blue-400" size="3rem" />
+            <div className="text-blue-400">
+              <FaUserCheck size="3rem" />
+            </div>
           </div>
           <h3 className="text-2xl font-semibold mb-4">Doctor Verification Required</h3>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -295,17 +303,23 @@ export default function Home() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gradient-to-br from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-              <FaVial className="text-green-400 mx-auto mb-4" size="2rem" />
+              <div className="text-green-400 mx-auto mb-4">
+                <FaVial size="2rem" />
+              </div>
               <p className="font-medium">Medical Validation</p>
               <p className="text-sm text-gray-400 mt-2">Doctors review AI recommendations</p>
             </div>
             <div className="bg-gradient-to-br from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-              <FaFileMedical className="text-yellow-400 mx-auto mb-4" size="2rem" />
+              <div className="text-yellow-400 mx-auto mb-4">
+                <FaFileMedical size="2rem" />
+              </div>
               <p className="font-medium">Digital Signature</p>
               <p className="text-sm text-gray-400 mt-2">Secure digital signature on prescriptions</p>
             </div>
             <div className="bg-gradient-to-br from-white/5 to-white/10 p-6 rounded-xl border border-white/10">
-              <FaShieldAlt className="text-red-400 mx-auto mb-4" size="2rem" />
+              <div className="text-red-400 mx-auto mb-4">
+                <FaShieldAlt size="2rem" />
+              </div>
               <p className="font-medium">Legal Compliance</p>
               <p className="text-sm text-gray-400 mt-2">All prescriptions meet regulatory standards</p>
             </div>
@@ -327,7 +341,9 @@ export default function Home() {
         </Link>
         
         <p className="text-sm text-gray-400 mt-6 max-w-lg mx-auto">
-          <FaShieldAlt className="inline mr-2" size="1rem" />
+          <span className="inline-flex items-center mr-2">
+            <FaShieldAlt size="1rem" />
+          </span>
           All analyses require doctor verification. This system assists medical professionals and does not replace clinical judgment.
         </p>
       </section>
